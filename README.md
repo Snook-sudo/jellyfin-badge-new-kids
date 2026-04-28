@@ -1,5 +1,5 @@
 # jellyfin-badge-New-kids
-Add a new badge to newly added films that disappears after 7 days, and also add a Kids badge to films or cartoons with a Kids tag already inserted in the tags
+Add a new badge to newly added films that disappears after 7 days, and also add a Kids badge to films or cartoons with a Genres tag (animation,animazione,cartoni,animated,kids,children,family) already inserted in the tags
 
 <img width="1231" height="715" alt="Screenshot 2026-04-19 alle 15 01 33" src="https://github.com/user-attachments/assets/15a916b5-4867-45f6-8368-470d3276a8e3" />
 
