@@ -2,12 +2,15 @@
 
     const NEW_DAYS = 7;
 
-    const TARGET_GENRES = [
-        "animation",
-        "animazione",
-        "cartoni",
-        "animated"
-    ];
+const TARGET_GENRES = [
+    "animation",
+    "animazione",
+    "cartoni",
+    "animated",
+    "kids",
+    "children",
+    "bambini"
+];
 
     // =========================
     // CHECK NEW
@@ -20,13 +23,13 @@
     };
 
     // =========================
-    // CHECK KIDS
+    // CHECK KIDS (ONLY GENRES)
     // =========================
     const isKids = (item) => {
         if (!item?.Genres) return false;
 
         return item.Genres.some(g => {
-            const name = (g.Name || g || "").toLowerCase();
+            const name = (typeof g === "string" ? g : g?.Name || "").toLowerCase();
             return TARGET_GENRES.some(t => name.includes(t));
         });
     };
@@ -89,7 +92,7 @@
     };
 
     // =========================
-    // CONTAINER STABLE
+    // CONTAINER
     // =========================
     function getContainer(card) {
 
@@ -103,17 +106,13 @@
                 position:absolute;
                 top:12px;
                 left:8px;
-
                 display:flex;
                 flex-direction:row;
                 flex-wrap:wrap;
-
                 gap:4px;
-
                 z-index:10;
                 pointer-events:none;
                 align-items:flex-start;
-
                 max-width:140px;
             `;
 
@@ -125,30 +124,23 @@
     }
 
     // =========================
-    // BADGE NEW (UPDATED STYLE)
+    // BADGES
     // =========================
     function addNew(container) {
-
         const el = document.createElement('div');
         el.textContent = 'New';
 
         el.style.cssText = `
             background:#e50914;
             color:#fff;
-
             font-size:10px;
             font-weight:700;
-
             padding:3px 10px;
             border-radius:999px;
-
             display:inline-flex;
             align-items:center;
             justify-content:center;
-
-            width:fit-content;
             white-space:nowrap;
-
             backdrop-filter: blur(6px);
             box-shadow: 0 4px 12px rgba(0,0,0,.35);
         `;
@@ -156,31 +148,21 @@
         container.appendChild(el);
     }
 
-    // =========================
-    // BADGE KIDS (UPDATED STYLE)
-    // =========================
     function addKids(container) {
-
         const el = document.createElement('div');
         el.textContent = 'Kids';
 
         el.style.cssText = `
             background:#4fc3f7;
             color:#fff;
-
             font-size:10px;
             font-weight:700;
-
             padding:3px 10px;
             border-radius:999px;
-
             display:inline-flex;
             align-items:center;
             justify-content:center;
-
-            width:fit-content;
             white-space:nowrap;
-
             backdrop-filter: blur(6px);
             box-shadow: 0 4px 12px rgba(0,0,0,.25);
         `;
@@ -213,13 +195,8 @@
                 container.removeChild(container.firstChild);
             }
 
-            if (data.isNew) {
-                addNew(container);
-            }
-
-            if (data.isKids) {
-                addKids(container);
-            }
+            if (data.isNew) addNew(container);
+            if (data.isKids) addKids(container);
         }
     }
 
@@ -227,12 +204,10 @@
     // URL WATCH
     // =========================
     setInterval(() => {
-
         if (location.href !== lastUrl) {
             lastUrl = location.href;
             setTimeout(apply, 1200);
         }
-
     }, 2000);
 
     // =========================
